@@ -1,0 +1,10 @@
+services:
+  lambda:
+    image: waddedmeat/aws-lambda-dev-proxy
+  proxy:
+    build: ../
+    ports:
+      - "9000:9000"
+    command:
+      - -host
+      - lambda
