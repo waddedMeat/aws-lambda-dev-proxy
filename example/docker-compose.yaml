@@ -1,0 +1,10 @@
+services:
+  lambda:
+    build: .
+  proxy:
+    build: ../
+    ports:
+      - "9000:9000"
+    command:
+      - -host
+      - lambda
