@@ -1,8 +1,6 @@
 services:
   lambda:
     build: .
-    volumes:
-      - .:/app
   proxy:
     image: waddedmeat/aws-lambda-dev-proxy
     ports:
