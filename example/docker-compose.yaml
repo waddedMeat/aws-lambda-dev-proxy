@@ -1,8 +1,10 @@
 services:
   lambda:
-    image: waddedmeat/aws-lambda-dev-proxy
+    build: .
+    volumes:
+      - .:/app
   proxy:
-    build: ../
+    image: waddedmeat/aws-lambda-dev-proxy
     ports:
       - "9000:9000"
     command:
