@@ -17,13 +17,14 @@ func proxyHandler(w http.ResponseWriter, request *http.Request) {
 	// read the request body into a []byte
 	body := make([]byte, request.ContentLength)
 	if read, err := request.Body.Read(body); err != nil && read < len(body) {
+		// @todo respond w/ error
+		//       log error
 		return
 	}
 
 	// this is the event that is going to be passed to the lambda
-	lambdaEvent := Event{
-		Body: string(body),
-	}
+	lambdaEvent := NewEvent(request.Method, string(body), request.Header)
+
 	// marshal the json into a []byte for the request payload
 	payload, _ := json.Marshal(lambdaEvent)
 
